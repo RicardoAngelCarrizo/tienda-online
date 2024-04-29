@@ -1,0 +1,21 @@
+body{
+    background-color: #ccc;    
+}
+
+#carouselExampleCaptions{
+    margin-top: 1rem;
+}
+
+.d-block {
+   margin-left: 260px;
+}
+
+.carousel-control-prev-icon{
+    height: 5rem;
+    width: 5rem;
+}
+
+.carousel-control-next-icon{
+    height: 5rem;
+    width: 5rem;
+}
