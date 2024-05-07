@@ -11,7 +11,7 @@ export const Productos = () => {
     },[])
 
     const getUser = () => {
-      axios.get('http://localhost:8000')
+      axios.get('https://reqres.in/api/users')
       .then(resp => {
          setUsers(resp.data.data)
       })
@@ -25,10 +25,10 @@ export const Productos = () => {
       <table className='table'>
         <thead>
           <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Avatar</th>
            
             
           </tr>
@@ -37,13 +37,15 @@ export const Productos = () => {
         <tbody>
           {
             users.map(user =>(
-              <tr key={user}>
-                <td>{user.codigo}</td>
-                <td>{user.nombre}</td>
-                <td>{user.precio}</td>
+              <tr>
+                <td>{user.id}</td>
+                <td>{user.email}
+                <p>Excelentes productos se los recomiendo</p>
+                </td>
+                <td>{user.last_name}</td>
                 <td>
-                  {user.stock}
-                  </td>                        
+                  <img src={user.avatar} alt={user.avatar} />
+                </td>                        
               </tr>
             ))
           }

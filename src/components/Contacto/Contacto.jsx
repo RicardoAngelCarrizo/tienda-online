@@ -1,4 +1,5 @@
 import React from 'react'
+import emailjs from '@emailjs/browser'
 import './Contacto.css'
 import {  useForm } from 'react-hook-form'
 
@@ -12,15 +13,22 @@ export const Contacto = () => {
     console.log(data)
     
   }
+  const senEmail = (event) => {
+    event.preventDefault();
+    emailjs.sendForm('service_ldnryrn', 'template_h7y0jgb', event.target, 'IqGYLxN_RN9-wdBQA')
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+  }
 
   return (
     
     <div onSubmit={handleSubmit(onSubmit)}>
 
-      <form action='https://formspree.io/f/mjvnjnja' method='POST' id='form' >
-        <div className="form-group">
+      <form onSubmit={senEmail}>
+        
+        <div className="form-group"  >
             <label>Nombre</label>
-            <input type="text" className="form-control" id="nombre"
+            <input type="text" className="form-control" id="nombre" 
               {...register ("nombre", {
                 required:true,
                 maxLength:50
@@ -42,7 +50,7 @@ export const Contacto = () => {
         </div>
         <div className="form-group">
             <label>Telefono</label>
-            <input type="number" className="form-control" id="number"
+            <input type="number" className="form-control" id="number" 
               {...register ("telefono", {
                 required:true,
                 maxLength:50
@@ -52,7 +60,7 @@ export const Contacto = () => {
         </div>
         <div className="form-group">
             <label>Email address</label>
-            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" 
               {...register ("email", {
                 required:true,
                 maxLength:50
@@ -60,27 +68,11 @@ export const Contacto = () => {
             />
             {errors.email?.type === 'required' && <p className='coment'>El campo email es requerido</p>}
         </div>
-        <div className="form-group">
-            <label>Selecciona tu producto</label>
-            <select className="form-control" id="producto"
-              {...register ("producto", {
-                required:true,
-                maxLength:50
-              })}
-            >
-              
-
-              <option>Skala mais Cachos</option>
-              <option>Skala bomba de keratina</option>
-              <option>Skala manteca de karité</option>
-              <option>Skala bomba de cristal</option>
-              <option>Skala amido de milho</option>
-            </select>
-        </div>
+      
         
         <div className="form-group">
             <label>Dejanos tu consulta</label>
-            <textarea className="form-control" id="consulta" rows="3"
+            <textarea className="form-control" id="consulta" rows="3" 
               {...register ("consulta", {
                 required:true,
                 maxLength:50
